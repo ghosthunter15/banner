@@ -56,7 +56,7 @@ print('DISK_USAGE\t', ps.disk_usage('/')) # works fine, may need split
 
 __msg__ = '\n\tWe do not forget, We do not forgive, We are Anonymous.\n\n'
 for i in __msg__:
-    sys.stdout.write(colored(str(i), "green", attrs = ['bold']))
+    sys.stdout.write(colored(str(i), "RED", attrs = ['bold']))
     sys.stdout.flush()
     sleep(0.03)
 
