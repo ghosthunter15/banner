@@ -4,6 +4,7 @@ import sys
 import os
 import subprocess
 from time import sleep
+from random import random
 
 import psutil as ps
 from termcolor import colored
@@ -54,9 +55,12 @@ print('swap_memory\t', ps.swap_memory()) # not working, needs to split
 print('DISK_USAGE\t', ps.disk_usage('/')) # works fine, may need split
 """
 
-__msg__ = '\n\tWe do not forget, We do not forgive, We are Anonymous.\n\n'
-for i in __msg__:
-    sys.stdout.write(colored(str(i), "RED", attrs = ['bold']))
+__msg = '\n\tWe do not forget, We do not forgive, We are Anonymous.\n\n'
+__speed = 50 #wpm
+
+for i in __msg:
+    sys.stdout.write(colored(str(i), "green", attrs = ['bold']))
     sys.stdout.flush()
-    sleep(0.03)
+    #sleep(0.03)
+    sleep(random()*10.0/__speed) #sim'ed human typing.
 
