@@ -1,15 +1,14 @@
-"""#!/usr/bin/env/python3.9.1"""
+# #!/usr/bin/env/python3.9.1
 
 import sys
 import os
 import subprocess
 from time import sleep
 from random import random
-
 import psutil as ps
 from termcolor import colored
 
-#clear screen
+# clear screen
 subprocess.run(['clear'])
 
 # freek me out
@@ -25,15 +24,11 @@ sys.stdout.write(GREEN + """
         \n\n"""
             + END)
 
-
 # system info
-
 p = ps.Process()
-#bat = subprocess.run(['termux-battery-status'])
 
-print('STATUS:\t\t', p.status(),'\n')
+print('STATUS:\t\t', p.status(), '\n')
 sleep(2)
-
 print('Username:\t', os.getlogin())
 print('Encoding:\t', sys.getfilesystemencoding())
 print('User id:\t', p.uids())
@@ -56,11 +51,10 @@ print('DISK_USAGE\t', ps.disk_usage('/')) # works fine, may need split
 """
 
 __msg = '\n\tWe do not forget, We do not forgive, We are Anonymous.\n\n'
-__speed = 50 #wpm
+__speed = 50  # wpm
 
 for i in __msg:
     sys.stdout.write(colored(str(i), "green", attrs = ['bold']))
     sys.stdout.flush()
-    #sleep(0.03)
-    sleep(random()*10.0/__speed) #sim'ed human typing.
-
+    # sleep(0.03)
+    sleep(random()*10.0/__speed)  # sim'ed human typing.
