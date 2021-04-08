@@ -5,12 +5,12 @@ import os
 import subprocess
 from time import sleep
 from random import random
+# 3rd party lib's
 import psutil as ps
 from termcolor import colored
 
 # clear screen
 subprocess.run(['clear'])
-
 # freek me out
 subprocess.run(['espeak', 'You have been hacked.'])
 
