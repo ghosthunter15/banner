@@ -1,0 +1,18 @@
+# Label README and license changes
+docs:
+  - "README.md"
+  - "LICENSE"
+
+# Label Python code updates
+python:
+  - "*.py"
+
+# Label dependency changes
+dependencies:
+  - "requirement.txt"
+
+# Label GitHub Actions workflow changes
+ci:
+  - ".github/workflows/*.yml"
+  - "label.yml"
+  - "python-app.yml"
