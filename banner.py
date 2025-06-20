@@ -15,7 +15,7 @@ import psutil as ps
 subprocess.run(["clear"])
 
 # freek me out
-subprocess.run(["espeak", "You have been hacked."])
+# subprocess.run(["espeak", "You have been hacked."])
 
 # Color codes
 GREEN, RED, END = "\033[32;2m", "\033[31;1m", "\033[0m"
@@ -36,15 +36,48 @@ sys.stdout.write(
 # System info
 p = ps.Process()
 
-print("STATUS:\t\t", p.status(), "\n")
-sleep(2)
+# print("STATUS:\t\t", p.status(), "\n")
+# sleep(2)
 
-print("Username:\t", os.getlogin())
-print("Encoding:\t", sys.getfilesystemencoding())
-print("User id:\t", p.uids())
-print("Groupe:\t\t", p.gids())
-print("Cpu times:\t", p.cpu_times())
-print("Mem info:\t", p.memory_full_info())
+
+# Visual separator
+def section_title(title):
+    print(f"\n{GREEN}{'='*10} {title} {'='*10}{END}")
+
+
+section_title("🖥 SYSTEM STATUS")
+
+p = ps.Process()
+
+# Process status
+print(f"{GREEN}⚙️ Status:     {END}{p.status()}")
+
+# User info
+try:
+    print(f"{GREEN}👤 Username:   {END}{os.getlogin()}")
+except OSError:
+    print(f"{RED}👤 Username:   Not available (possibly because kali){END}")
+
+print(f"{GREEN}⌨️ Encoding:   {END}{sys.getfilesystemencoding()}")
+
+# User/group info
+uids = ", ".join([f"{k}={v}" for k, v in p.uids()._asdict().items()])
+gids = ", ".join([f"{k}={v}" for k, v in p.gids()._asdict().items()])
+print(f"{GREEN}🔐 User IDs:   {END}{uids}")
+print(f"{GREEN}🔐 Group IDs:  {END}{gids}")
+
+# CPU and memory info
+cpu_times = p.cpu_times()
+mem_info = p.memory_full_info()
+
+print(
+    f"{GREEN}🧮 CPU Times:  {END}user={cpu_times.user},\
+        system={cpu_times.system}"
+)
+print(
+    f"{GREEN}🧠 Memory:     {END}rss={mem_info.rss:,}\
+        bytes, vms={mem_info.vms:,} bytes"
+)
 
 # Battery status
 print("\n🔋 Battery status:")
@@ -69,7 +102,7 @@ except Exception as e:
     print(f"{RED}Unexpected error: {e}{END}")
 
 # Working directory and date
-print("\nPrinting working dir:\t", p.cwd(), "\n")
+print("\n📂 Printing working dir:\t", p.cwd(), "\n")
 print("📅 Date:")
 subprocess.run(["date"])
 
